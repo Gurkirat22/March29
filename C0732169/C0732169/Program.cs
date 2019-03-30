@@ -12,7 +12,7 @@ namespace C0732169
         static void Main(string[] args)
         {
 
-            Console.WriteLine("downloading a file");
+            Console.WriteLine(" Downloading a file");
             Download();
             Console.ReadLine();
         }
@@ -20,17 +20,19 @@ namespace C0732169
         static async void Download()
         {
             await Network.Download();
-            Console.WriteLine("Download complete");
+            Console.WriteLine("Download Complete");
         }
+
     }
+
 
     class Network
     {
-        static public Task Download()
+        public async void Download()
         {
-            return Task.Run(
-                    () => Thread.Sleep(3000));
+            HttpClient client = new HttpClient();
+            var data = await client.GetStringAsync("https://torontopubliclibrary.ca");
+            Console.WriteLine(data);
         }
     }
-
 }
